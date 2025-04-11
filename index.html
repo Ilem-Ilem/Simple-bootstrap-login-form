@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="title">Ilem's Login Form</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/vendor/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-wrapper">
+            <div class="form">
+                <form action="">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="" id="email" aria-describedby="emailHelpId"
+                            placeholder="abc@mail.com" />
+                        <small id="email-error" class="error"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="" id="password"
+                            placeholder="Input Your Password" />
+                        <div class="error-list" id="error-list">
+                            <small class="error" id="lenght-error">password Must Contain 8 Characters</small>
+                        </div>
+                    </div>
+                    <div class="float-right">
+                        <input type="submit" value="Login" id="submit">
+                    </div>
+
+                    <a href="#" class="register-link">i do not have Register -></a>
+                </form>
+                <div class="other-links">
+                    <a href="#">i do not have Register -></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/main.js"></script>
+    <script>
+        let submit = document.getElementById('submit').addEventListener('click', function (e) {
+            e.preventDefault();
+        });
+
+        let email = document.getElementById('email');
+        let password = document.getElementById('password');
+        email.addEventListener('input', function (e) {
+            document.getElementById('email-error').innerHTML = (!validateForm.notEmpty(email)) ?
+                'Email required' : '';
+            document.getElementById('email-error').style.color = (!validateForm.notEmpty(email)) ?
+                'red' : '#00f600';
+            document.getElementById('email-error').innerHTML = (!validateForm.isEmail(email)) ?
+                'Invalid Email' : '&#10003';
+                document.getElementById('email-error').style.color = (!validateForm.isEmail(email)) ?
+                'red' : '#00f600';
+        });
+        password.addEventListener('focus', function () {
+            document.getElementById('error-list').style.display = "block";
+        });
+
+        password.addEventListener('input', function () {
+            document.getElementById('lenght-error').style.color = (!validateForm.min(password, 8)) ?
+                'red' : '#00f600';
+        })
+    </script>
+</body>
+
+</html>
